@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>康樂小幫手 · 班級活力大本營 | 凝聚力、活動與體育籌辦神器</title>
+  <meta name="description" content="康樂股長專屬多功能互動平台：提升班級凝聚力、籌辦娛樂活動、體育賽事計分、命運大轉盤、神速分組抽籤、民主投票所與真心話破冰題庫。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       頂部導航與功能列
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container nav-content">
+      <div class="brand-logo" onclick="window.app.switchTab('dashboard')">
+        <div class="logo-badge">🎉</div>
+        <div class="brand-title">
+          <h1>康樂小幫手</h1>
+          <span class="role-tag">康樂股長專屬 · 班級活力大本營</span>
+        </div>
+      </div>
+
+      <!-- 導航分頁 -->
+      <nav class="nav-tabs" role="tablist">
+        <button class="nav-btn active" data-tab="dashboard" id="nav-dashboard">
+          <span class="icon">🏠</span>
+          <span>大本營首頁</span>
+        </button>
+        <button class="nav-btn" data-tab="events" id="nav-events">
+          <span class="icon">📅</span>
+          <span>活動與體育</span>
+        </button>
+        <button class="nav-btn" data-tab="tools" id="nav-tools">
+          <span class="icon">🎲</span>
+          <span>團康神器箱</span>
+        </button>
+        <button class="nav-btn" data-tab="polls" id="nav-polls">
+          <span class="icon">🗳️</span>
+          <span>民主提案所</span>
+        </button>
+        <button class="nav-btn" data-tab="morale" id="nav-morale">
+          <span class="icon">💌</span>
+          <span>打氣牆與回憶</span>
+        </button>
+      </nav>
+
+      <!-- 快捷工具與音效開關 -->
+      <div class="header-actions">
+        <button class="btn-icon active-sound" id="soundToggleBtn" title="音效開關">🔊</button>
+        <button class="btn-icon" id="resetDataBtn" title="恢復預設範本資料">🔄</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       主要內容區域
+       ========================================================================== -->
+  <main class="container">
+
+    <!-- ------------------------------------------------------------------------
+         分頁 1：首頁總覽 (Dashboard)
+         ------------------------------------------------------------------------ -->
+    <section class="tab-pane active" id="tab-dashboard">
+      <div class="dash-grid">
+        <!-- 左側主區塊 -->
+        <div class="dash-main">
+          <!-- 康樂廣播站 -->
+          <div class="broadcast-hero">
+            <div class="broadcast-top">
+              <div class="live-indicator">
+                <span class="pulse-dot"></span>
+                <span>康樂股長今日廣播</span>
+              </div>
+              <div class="broadcast-actions">
+                <button class="btn btn-secondary btn-sm" id="editAnnBtn">✏️ 編輯廣播</button>
+                <button class="btn btn-primary btn-sm" id="copyAnnBtn">📋 複製 LINE 班群格式</button>
+              </div>
+            </div>
+            <div class="broadcast-body">
+              <h2 class="broadcast-title" id="broadcastTitle">載入中...</h2>
+              <p class="broadcast-text" id="broadcastText">載入中...</p>
+              <div class="broadcast-meta" id="broadcastMeta"></div>
+            </div>
+          </div>
+
+          <!-- 快速數據概況條 -->
+          <div class="stats-row">
+            <div class="stat-card stat-coral">
+              <div class="stat-icon">📅</div>
+              <div class="stat-info">
+                <div class="stat-num" id="statEventsCount">4</div>
+                <div class="stat-label">進行中活動</div>
+              </div>
+            </div>
+            <div class="stat-card stat-violet">
+              <div class="stat-icon">🙋‍♂️</div>
+              <div class="stat-info">
+                <div class="stat-num" id="statAttendeesCount">42</div>
+                <div class="stat-label">累積報名人次</div>
+              </div>
+            </div>
+            <div class="stat-card stat-cyan">
+              <div class="stat-icon">🗳️</div>
+              <div class="stat-info">
+                <div class="stat-num" id="statPollsCount">2</div>
+                <div class="stat-label">熱門投票提案</div>
+              </div>
+            </div>
+            <div class="stat-card stat-amber">
+              <div class="stat-icon">💌</div>
+              <div class="stat-info">
+                <div class="stat-num" id="statCheersCount">4</div>
+                <div class="stat-label">打氣留言數</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 團康神器快速啟動看板 -->
+          <div class="glass-panel">
+            <div class="section-header" style="margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-size: 1.15rem; font-weight: 800;">⚡ 康樂必備快捷神器</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">活動現場隨點即用，瞬間引爆班級歡笑與氣氛！</p>
+              </div>
+            </div>
+            <div class="quick-tools-grid">
+              <div class="quick-tool-card" data-switch-tab="tools" data-switch-subtool="wheel">
+                <div class="quick-tool-icon">🎡</div>
+                <div class="quick-tool-info">
+                  <h4>命運大轉盤</h4>
+                  <p>抽籤、處罰、誰買飲料或表演，一轉揭曉！</p>
+                </div>
+              </div>
+              <div class="quick-tool-card" data-switch-tab="tools" data-switch-subtool="randomizer">
+                <div class="quick-tool-icon">👥</div>
+                <div class="quick-tool-info">
+                  <h4>神速分組抽籤</h4>
+                  <p>一秒亂數打散名單，自動產生隊名與對戰表。</p>
+                </div>
+              </div>
+              <div class="quick-tool-card" data-switch-tab="tools" data-switch-subtool="scoreboard">
+                <div class="quick-tool-icon">⏱️</div>
+                <div class="quick-tool-info">
+                  <h4>賽事熱力計分板</h4>
+                  <p>籃球排球賽必備！比分、倒數計時與口哨音效。</p>
+                </div>
+              </div>
+              <div class="quick-tool-card" data-switch-tab="tools" data-switch-subtool="icebreaker">
+                <div class="quick-tool-icon">🎭</div>
+                <div class="quick-tool-info">
+                  <h4>真心話大冒險</h4>
+                  <p>精選50+題校園破冰題目，聚餐絕不冷場！</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側側邊欄 -->
+        <aside class="dash-sidebar">
+          <!-- 下個活動即時倒數 -->
+          <div class="countdown-box">
+            <h3>⏳ 下個活動倒數</h3>
+            <div class="event-name" id="countdownEventName">載入中...</div>
+            <div class="timer-grid">
+              <div class="time-segment">
+                <div class="time-val" id="cdDays">00</div>
+                <div class="time-unit">天 (Days)</div>
+              </div>
+              <div class="time-segment">
+                <div class="time-val" id="cdHours">00</div>
+                <div class="time-unit">時 (Hours)</div>
+              </div>
+              <div class="time-segment">
+                <div class="time-val" id="cdMins">00</div>
+                <div class="time-unit">分 (Mins)</div>
+              </div>
+              <div class="time-segment">
+                <div class="time-val" id="cdSecs">00</div>
+                <div class="time-unit">秒 (Secs)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 班級凝聚力熱力儀表 -->
+          <div class="morale-card">
+            <div class="gauge-header">
+              <div class="gauge-title">🔥 班級凝聚力指數</div>
+              <div class="gauge-percent">95%</div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 95%;"></div>
+            </div>
+            <div class="gauge-tip">
+              <span>✨</span>
+              <span>全員向心力超高！隨時可以發起全班出遊！</span>
+            </div>
+          </div>
+
+          <!-- 康樂股長座右銘 -->
+          <div class="glass-panel" style="background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.25);">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: #c4b5fd; margin-bottom: 0.4rem;">💡 康樂股長核心理念</h4>
+            <p style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.5;">
+              「讀書要全力以赴，玩樂更要火力全開！只要康樂在，全班的笑聲與熱血回憶永遠不打烊！」
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         分頁 2：活動與體育籌辦 (Events & Sports)
+         ------------------------------------------------------------------------ -->
+    <section class="tab-pane" id="tab-events">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">
+            <span>📅 活動與體育賽事籌辦</span>
+            <span class="badge">籌備中</span>
+          </h2>
+          <p class="section-desc">管理各項班級聚會、運動比賽與戶外班遊，追蹤 RSVP 報名並支援一鍵複製通知。</p>
+        </div>
+        <button class="btn btn-primary" id="openAddEventModalBtn">
+          <span>＋ 發起新活動</span>
+        </button>
+      </div>
+
+      <!-- 分類工具列 -->
+      <div class="events-toolbar">
+        <div class="filter-group">
+          <button class="filter-btn active" data-category="all">全部活動</button>
+          <button class="filter-btn" data-category="sports">🏐 體育賽事</button>
+          <button class="filter-btn" data-category="party">🥩 娛樂聚會</button>
+          <button class="filter-btn" data-category="trip">🌊 戶外旅行</button>
+          <button class="filter-btn" data-category="game">🎲 破冰同樂</button>
+        </div>
+      </div>
+
+      <!-- 活動卡片網格 -->
+      <div class="events-cards-grid" id="eventsGrid">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         分頁 3：團康神器箱 (Fun & Sports Toolbox)
+         ------------------------------------------------------------------------ -->
+    <section class="tab-pane" id="tab-tools">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">
+            <span>🎲 團康破冰與體育工具箱</span>
+            <span class="badge">互動現場</span>
+          </h2>
+          <p class="section-desc">轉盤抽籤、隨機分隊、比賽比分板與破冰話題庫，康樂股長主持活動的神隊友！</p>
+        </div>
+      </div>
+
+      <!-- 工具切換導航 -->
+      <div class="tools-nav-bar">
+        <button class="tool-tab-btn active" data-tool="wheel">🎡 命運大轉盤</button>
+        <button class="tool-tab-btn" data-tool="randomizer">👥 神速分組抽籤機</button>
+        <button class="tool-tab-btn" data-tool="scoreboard">⏱️ 體育即時計分板</button>
+        <button class="tool-tab-btn" data-tool="icebreaker">🎭 真心話大冒險</button>
+      </div>
+
+      <!-- 子工具 1：命運大轉盤 -->
+      <div class="tool-subview active" id="subview-wheel">
+        <div class="wheel-container-wrapper">
+          <div class="glass-panel wheel-stage">
+            <div class="wheel-outer-box">
+              <div class="wheel-pointer" id="wheelPointer">
+                <svg viewBox="0 0 32 42">
+                  <path d="M16 42 L0 10 C0 4.5 7 0 16 0 C25 0 32 4.5 32 10 Z" />
+                </svg>
+              </div>
+              <canvas id="wheelCanvas" width="380" height="380"></canvas>
+            </div>
+            <div class="wheel-controls">
+              <button class="btn btn-primary btn-lg" id="spinWheelBtn">
+                <span>🚀 開始旋轉抽籤！</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 轉盤右側自訂與預設選項 -->
+          <div class="wheel-sidebar">
+            <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">快速切換主題預設：</h4>
+            <div class="wheel-presets" id="wheelPresetsContainer">
+              <!-- 由 JS 動態產生預設按鈕 -->
+            </div>
+
+            <h4 style="font-size: 0.92rem; font-weight: 800; margin: 1rem 0 0.4rem;">目前轉盤項目：</h4>
+            <div class="items-tag-list" id="wheelItemsList">
+              <!-- 轉盤項目列表 -->
+            </div>
+
+            <div class="add-item-form">
+              <input type="text" class="input-field" id="newWheelItemInput" placeholder="輸入新選項..." maxlength="12">
+              <button class="btn btn-secondary btn-sm" id="addWheelItemBtn">加入</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 子工具 2：神速分組抽籤機 -->
+      <div class="tool-subview" id="subview-randomizer">
+        <div class="randomizer-layout">
+          <!-- 左側名單設定 -->
+          <div class="glass-panel">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">👥 分組設定與名單</h3>
+            
+            <div class="form-group">
+              <label class="form-label">分組規則：</label>
+              <select class="input-field" id="splitModeSelect">
+                <option value="teams">按照隊伍數（分成 N 組）</option>
+                <option value="per_team">按照每隊人數（每組 N 人）</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">數量設定 (N)：</label>
+              <input type="number" class="input-field" id="splitNumberInput" value="4" min="2" max="20">
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <label class="form-label" style="margin: 0;">同學名單（每行一人）：</label>
+                <button class="btn btn-sm btn-secondary" id="resetRosterBtn" style="padding: 2px 6px; font-size: 0.75rem;">恢復預設全班名單</button>
+              </div>
+              <textarea class="input-field" id="rosterInput" style="height: 180px; font-size: 0.85rem;"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+              <button class="btn btn-primary" id="doRandomizeBtn" style="flex: 1;">
+                <span>🎲 立即隨機分組！</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 右側分組結果與對戰表 -->
+          <div>
+            <div class="glass-panel" style="margin-bottom: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.15rem; font-weight: 800;">🏆 分組抽籤結果</h3>
+                <button class="btn btn-secondary btn-sm" id="copyTeamsBtn">📋 複製名單到 LINE</button>
+              </div>
+              <div class="team-results-grid" id="teamsResultGrid">
+                <div style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 2rem;">
+                  點擊左側「立即隨機分組」按鈕開始抽籤！
+                </div>
+              </div>
+            </div>
+
+            <!-- 自動產生對戰表 -->
+            <div class="matchup-box" id="matchupSection" style="display: none;">
+              <h4 style="font-size: 1rem; font-weight: 800;">⚔️ 體育對抗對戰組合 (Matchups)</h4>
+              <div class="matchup-list" id="matchupList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 子工具 3：賽事即時計分板 -->
+      <div class="tool-subview" id="subview-scoreboard">
+        <div class="scoreboard-container">
+          <!-- 頂部計時器 -->
+          <div class="sb-timer-bar">
+            <div class="sb-timer-display" id="sbTimerDisplay">10:00</div>
+            <div class="sb-timer-actions">
+              <button class="btn btn-primary" id="timerStartPauseBtn">▶ 開始計時</button>
+              <button class="btn btn-secondary" id="timerResetBtn">↺ 重設計時</button>
+              <button class="btn btn-violet" id="whistleBtn">📢 裁判吹哨！</button>
+            </div>
+          </div>
+
+          <!-- 雙方比分區 -->
+          <div class="sb-teams-grid">
+            <!-- 紅隊 / 隊伍 A -->
+            <div class="sb-team-side sb-team-red">
+              <input type="text" class="sb-team-input" value="🔥 紅隊 (Red)" title="點擊修改隊名">
+              <div class="sb-score-num" id="redScoreNum">0</div>
+              <div class="sb-btn-row">
+                <button class="btn btn-primary btn-sm" data-score-red="1">+1</button>
+                <button class="btn btn-primary btn-sm" data-score-red="2">+2</button>
+                <button class="btn btn-primary btn-sm" data-score-red="3">+3</button>
+                <button class="btn btn-secondary btn-sm" data-score-red="-1">-1</button>
+              </div>
+            </div>
+
+            <!-- 中間局數指示 -->
+            <div class="sb-center-divider">
+              <div class="sb-vs-text">VS</div>
+              <div class="sb-period-box" id="scoreboardPeriod">第 1 節 / 局</div>
+              <button class="btn btn-secondary btn-sm" id="nextPeriodBtn" style="font-size: 0.75rem; margin-top: 0.5rem;">下一節 ⏩</button>
+            </div>
+
+            <!-- 藍隊 / 隊伍 B -->
+            <div class="sb-team-side sb-team-blue">
+              <input type="text" class="sb-team-input" value="⚡ 藍隊 (Blue)" title="點擊修改隊名">
+              <div class="sb-score-num" id="blueScoreNum">0</div>
+              <div class="sb-btn-row">
+                <button class="btn btn-emerald btn-sm" data-score-blue="1">+1</button>
+                <button class="btn btn-emerald btn-sm" data-score-blue="2">+2</button>
+                <button class="btn btn-emerald btn-sm" data-score-blue="3">+3</button>
+                <button class="btn btn-secondary btn-sm" data-score-blue="-1">-1</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;">
+            <button class="btn btn-secondary btn-sm" id="resetScoreboardBtn" style="color: var(--text-muted);">清空比賽比分 0 - 0</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 子工具 4：真心話大冒險 -->
+      <div class="tool-subview" id="subview-icebreaker">
+        <div class="icebreaker-box">
+          <div class="icebreaker-category-filter">
+            <button class="filter-btn icebreaker-cat-btn active" data-category="all">全部題目</button>
+            <button class="filter-btn icebreaker-cat-btn" data-category="truth">💬 真心話</button>
+            <button class="filter-btn icebreaker-cat-btn" data-category="dare">🔥 爆笑大冒險</button>
+            <button class="filter-btn icebreaker-cat-btn" data-category="team">🤝 團隊默契考驗</button>
+            <button class="filter-btn icebreaker-cat-btn" data-category="sports">🏃 體能運動挑戰</button>
+          </div>
+
+          <div class="icebreaker-card" id="icebreakerCard">
+            <span class="icebreaker-type-tag tag-truth" id="icebreakerTag">真心話 · 校園生活</span>
+            <div class="icebreaker-question" id="icebreakerText">
+              點擊下方按鈕隨機抽取破冰題目！
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 1rem;">
+            <button class="btn btn-primary btn-lg" id="pickIcebreakerBtn">
+              <span>🎲 換一題破冰！</span>
+            </button>
+            <button class="btn btn-secondary btn-lg" id="copyPromptBtn">
+              <span>📋 複製題目</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         分頁 4：民主提案所 (Polls & Voting)
+         ------------------------------------------------------------------------ -->
+    <section class="tab-pane" id="tab-polls">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">
+            <span>🗳️ 班級活動民主提案所</span>
+            <span class="badge">投票中</span>
+          </h2>
+          <p class="section-desc">班級活動大家做主！去哪玩、吃什麼、班服穿什麼，點擊即可一人一票公開透明！</p>
+        </div>
+        <button class="btn btn-primary" id="openAddPollModalBtn">
+          <span>＋ 發起新投票</span>
+        </button>
+      </div>
+
+      <!-- 投票列表網格 -->
+      <div class="polls-grid" id="pollsGrid">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------------
+         分頁 5：打氣留言牆與青春回憶 (Morale Wall & Memories)
+         ------------------------------------------------------------------------ -->
+    <section class="tab-pane" id="tab-morale">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">
+            <span>💌 青春打氣牆與回憶錄</span>
+            <span class="badge">班級同樂</span>
+          </h2>
+          <p class="section-desc">留下互相鼓勵的彩色便利貼、感謝同學付出，珍藏屬於我們的耀眼回憶！</p>
+        </div>
+      </div>
+
+      <div class="morale-board-layout">
+        <!-- 留言表單 -->
+        <div class="cheer-form-panel">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem;">✍️ 貼上打氣便利貼</h3>
+          <form id="newCheerForm">
+            <div class="form-group">
+              <label class="form-label">你的暱稱 / 姓名：</label>
+              <input type="text" class="input-field" id="cheerAuthorInput" placeholder="例如：張同學 或 匿名支持者" maxlength="10">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">選擇便利貼顏色：</label>
+              <div style="display: flex; gap: 0.75rem; margin-top: 4px;">
+                <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:0.85rem;">
+                  <input type="radio" name="cheerColor" value="yellow" checked> 💛 暖黃
+                </label>
+                <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:0.85rem;">
+                  <input type="radio" name="cheerColor" value="pink"> 💗 活力粉
+                </label>
+                <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:0.85rem;">
+                  <input type="radio" name="cheerColor" value="cyan"> 💙 青空藍
+                </label>
+                <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:0.85rem;">
+                  <input type="radio" name="cheerColor" value="violet"> 💜 迷幻紫
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">打氣留言或許願：</label>
+              <textarea class="input-field" id="cheerMessageInput" placeholder="寫下想對全班說的話、給球隊加油、或是給康樂的建議..." required maxlength="120"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+              <span>💌 貼上打氣留言牆</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- 便利貼牆 -->
+        <div>
+          <div class="cheer-notes-masonry" id="cheerNotesMasonry">
+            <!-- 由 JavaScript 動態渲染 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 青春榮譽與活動回憶相簿展示 -->
+      <div class="memories-section">
+        <div class="section-header" style="margin-bottom: 0.5rem;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800;">📸 青春回憶相簿與榮譽櫃</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">記錄我們每一次狂歡、每一次吶喊與每一次勝利！</p>
+          </div>
+        </div>
+        <div class="memories-grid" id="memoriesGrid">
+          <!-- 由 JavaScript 動態渲染 -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       彈跳視窗集合 (Modals)
+       ========================================================================== -->
+
+  <!-- 1. 新增活動 Modal -->
+  <div class="modal-backdrop" id="eventModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">＋ 發起新活動 / 賽事</h3>
+        <button class="modal-close">✕</button>
+      </div>
+      <form id="newEventForm">
+        <div class="form-group">
+          <label class="form-label">活動名稱：</label>
+          <input type="text" class="input-field" id="evTitleInput" placeholder="例如：期中考後火鍋趴 / 班際排球友誼賽" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">活動類型：</label>
+          <select class="input-field" id="evCategorySelect">
+            <option value="party">🥩 娛樂聚會</option>
+            <option value="sports">🏐 體育賽事</option>
+            <option value="trip">🌊 戶外旅行</option>
+            <option value="game">🎲 破冰同樂</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label class="form-label">活動日期：</label>
+            <input type="date" class="input-field" id="evDateInput" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">集合時間：</label>
+            <input type="time" class="input-field" id="evTimeInput" value="18:00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">活動地點：</label>
+          <input type="text" class="input-field" id="evLocationInput" placeholder="例如：學校操場 / 某某餐廳旗艦店" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">預估費用：</label>
+          <input type="text" class="input-field" id="evCostInput" placeholder="例如：約 $400 / 人 或 免費">
+        </div>
+        <div class="form-group">
+          <label class="form-label">詳細說明與提醒事項：</label>
+          <textarea class="input-field" id="evDescInput" placeholder="例如：請著運動服裝、攜帶毛巾與水壺..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary modal-close">取消</button>
+          <button type="submit" class="btn btn-primary">立即發布活動</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. 編輯康樂廣播 Modal -->
+  <div class="modal-backdrop" id="annModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">✏️ 編輯康樂股長廣播公告</h3>
+        <button class="modal-close">✕</button>
+      </div>
+      <form id="annForm">
+        <div class="form-group">
+          <label class="form-label">廣播標題：</label>
+          <input type="text" class="input-field" id="editAnnTitle" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">公告內容：</label>
+          <textarea class="input-field" id="editAnnText" style="height: 120px;" required></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary modal-close">取消</button>
+          <button type="submit" class="btn btn-primary">儲存廣播</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. 新增投票案 Modal -->
+  <div class="modal-backdrop" id="pollModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">🗳️ 發起新提案投票</h3>
+        <button class="modal-close">✕</button>
+      </div>
+      <form id="newPollForm">
+        <div class="form-group">
+          <label class="form-label">投票標題：</label>
+          <input type="text" class="input-field" id="pollTitleInput" placeholder="例如：下次聚餐想吃什麼？" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">補充說明：</label>
+          <input type="text" class="input-field" id="pollDescInput" placeholder="例如：最高票的項目康樂直接去訂位！">
+        </div>
+        <div class="form-group">
+          <label class="form-label">投票選項（每行一項）：</label>
+          <textarea class="input-field" id="pollOptionsInput" style="height: 120px;" placeholder="火鍋吃到飽&#10;日式居酒屋&#10;美式漢堡店&#10;平價牛排館" required></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary modal-close">取消</button>
+          <button type="submit" class="btn btn-primary">建立投票</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. 命運轉盤揭曉 Modal -->
+  <div class="modal-backdrop" id="winnerModal">
+    <div class="modal-content" style="text-align: center; max-width: 420px;">
+      <div style="font-size: 3.5rem; margin-bottom: 0.5rem; animation: pulseLogo 1.5s infinite alternate;">🎉</div>
+      <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem;">命運結果揭曉！</h3>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">全場共同見證，轉盤的選擇是：</p>
+      <div style="background: rgba(255,94,87,0.15); border: 2px dashed #ff5e57; border-radius: var(--radius-lg); padding: 1.5rem 1rem; margin-bottom: 1.75rem;">
+        <div style="font-size: 1.8rem; font-weight: 900; color: #ff7675;" id="winnerText">恭喜中獎</div>
+      </div>
+      <button class="btn btn-primary btn-lg" id="closeWinnerBtn" style="width: 100%;">
+        太刺激啦！收到！✨
+      </button>
+    </div>
+  </div>
+
+  <!-- 全螢幕彩紙 Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- 浮動提示 Toast 容器 -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- 模組載入 -->
+  <script src="js/audio.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/wheel.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
